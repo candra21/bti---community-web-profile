@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Anggota - Bikers Touring Indonesia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <style>
+        :root {
+            --primary: #062A42; --primary-light: #0a3d5c; --primary-dark: #041e2e;
+            --accent: #E62129; --accent-hover: #c91a21; --accent-light: #ff4d54;
+            --white: #ffffff; --gray-50: #f8fafc; --gray-100: #f1f5f9; --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1; --gray-400: #94a3b8; --gray-500: #64748b; --gray-600: #475569;
+            --gray-700: #334155; --gray-800: #1e293b; --gray-900: #0f172a;
+            --success: #10b981; --warning: #f59e0b; --danger: #ef4444; --info: #3b82f6;
+            --font-heading: "Franklin Gothic ITC", "Libre Franklin", "Arial Narrow", Arial, sans-serif; --font-body: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            --radius-sm: 8px; --radius-md: 12px; --radius-lg: 16px; --radius-xl: 24px; --radius-full: 9999px;
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1); --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1); --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1);
+            --transition-base: 0.3s ease;
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-body); color: var(--gray-800); line-height: 1.6; background: var(--gray-50); }
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+        .auth-page { min-height: 100vh; padding: 2rem 1rem; }
+        .back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--gray-500); margin-bottom: 1.5rem; font-size: 0.9rem; transition: var(--transition-base); }
+        .back-link:hover { color: var(--accent); }
+        .auth-card { background: var(--white); border-radius: var(--radius-xl); padding: 2.5rem; box-shadow: var(--shadow-lg); border: 1px solid var(--gray-100); }
+        .auth-header { text-align: center; margin-bottom: 2rem; }
+        .auth-header .logo-icon { width: 50px; height: 50px; margin: 0 auto 1rem; color: var(--accent); }
+        .auth-header h1 { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 800; color: var(--primary); margin-bottom: 0.5rem; }
+        .auth-header p { color: var(--gray-500); font-size: 0.9rem; }
+
+        /* Stepper */
+        .stepper { display: flex; justify-content: center; gap: 0; margin-bottom: 2.5rem; position: relative; }
+        .stepper::before { content: ''; position: absolute; top: 20px; left: 15%; right: 15%; height: 2px; background: var(--gray-200); z-index: 0; }
+        .step { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; position: relative; z-index: 1; flex: 1; max-width: 150px; }
+        .step-number { width: 40px; height: 40px; border-radius: 50%; background: var(--gray-200); color: var(--gray-500); display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); font-weight: 700; font-size: 0.9rem; transition: var(--transition-base); border: 3px solid var(--white); }
+        .step.active .step-number { background: var(--accent); color: var(--white); box-shadow: 0 0 0 4px rgba(233, 69, 96, 0.2); }
+        .step.completed .step-number { background: var(--success); color: var(--white); }
+        .step-label { font-size: 0.75rem; font-weight: 600; color: var(--gray-400); text-align: center; }
+        .step.active .step-label { color: var(--accent); }
+        .step.completed .step-label { color: var(--success); }
+
+        /* Form */
+        .form-section { display: none; animation: fadeIn 0.4s ease; }
+        .form-section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+        .form-grid.full { grid-template-columns: 1fr; }
+        .form-group { margin-bottom: 1.25rem; }
+        .form-label { display: block; font-family: var(--font-heading); font-size: 0.85rem; font-weight: 600; color: var(--gray-700); margin-bottom: 0.5rem; }
+        .form-label.required::after { content: ' *'; color: var(--danger); }
+        .form-input, .form-select, .form-textarea { width: 100%; padding: 0.85rem 1rem; border: 2px solid var(--gray-200); border-radius: var(--radius-lg); font-family: var(--font-body); font-size: 0.95rem; color: var(--gray-800); background: var(--white); transition: var(--transition-base); }
+        .form-input:focus, .form-select:focus, .form-textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px rgba(233, 69, 96, 0.1); }
+        .form-input::placeholder { color: var(--gray-400); }
+        .form-textarea { min-height: 80px; resize: vertical; }
+        .file-upload { border: 2px dashed var(--gray-300); border-radius: var(--radius-lg); padding: 1.5rem; text-align: center; cursor: pointer; transition: var(--transition-base); background: var(--gray-50); }
+        .file-upload:hover { border-color: var(--accent); background: rgba(233, 69, 96, 0.03); }
+        .file-upload i { font-size: 2rem; color: var(--gray-400); margin-bottom: 0.5rem; }
+        .file-upload p { font-size: 0.85rem; color: var(--gray-500); }
+        .file-upload input { display: none; }
+
+        /* Buttons */
+        .form-actions { display: flex; justify-content: space-between; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--gray-100); }
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.85rem 1.75rem; font-family: var(--font-heading); font-size: 0.9rem; font-weight: 600; border-radius: var(--radius-full); transition: var(--transition-base); cursor: pointer; border: 2px solid transparent; }
+        .btn-primary { background: var(--accent); color: var(--white); border-color: var(--accent); }
+        .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(233, 69, 96, 0.35); }
+        .btn-outline { background: transparent; color: var(--gray-600); border-color: var(--gray-300); }
+        .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none !important; }
+
+        /* Payment Section */
+        .payment-card { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); border-radius: var(--radius-xl); padding: 2rem; color: var(--white); margin-bottom: 1.5rem; }
+        .payment-card h3 { font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 1rem; }
+        .payment-amount { font-family: var(--font-heading); font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .payment-period { font-size: 0.9rem; opacity: 0.8; margin-bottom: 1.5rem; }
+        .payment-methods { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .payment-method { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1.25rem; background: rgba(255,255,255,0.1); border-radius: var(--radius-lg); cursor: pointer; transition: var(--transition-base); border: 2px solid transparent; }
+        .payment-method:hover, .payment-method.active { border-color: var(--accent); background: rgba(255,255,255,0.15); }
+        .payment-method i { font-size: 1.2rem; }
+
+        /* Status */
+        .status-card { text-align: center; padding: 3rem 2rem; }
+        .status-icon { width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 2rem; }
+        .status-icon.pending { background: rgba(245, 158, 11, 0.1); color: var(--warning); }
+        .status-icon.success { background: rgba(16, 185, 129, 0.1); color: var(--success); }
+        .status-card h2 { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; color: var(--primary); margin-bottom: 0.75rem; }
+        .status-card p { color: var(--gray-500); margin-bottom: 0.5rem; }
+        .nomor-pengajuan { font-family: var(--font-heading); font-size: 1.2rem; font-weight: 700; color: var(--accent); background: var(--gray-50); padding: 0.75rem 1.5rem; border-radius: var(--radius-lg); display: inline-block; margin: 1rem 0; }
+        .status-timeline { display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
+        .status-item { text-align: center; padding: 1rem; border-radius: var(--radius-lg); background: var(--gray-50); min-width: 140px; }
+        .status-item.active { background: rgba(233, 69, 96, 0.08); border: 2px solid var(--accent); }
+        .status-item i { font-size: 1.5rem; margin-bottom: 0.5rem; display: block; }
+        .status-item.pending i { color: var(--warning); }
+        .status-item.active i { color: var(--accent); }
+        .status-item.success i { color: var(--success); }
+        .status-item.rejected i { color: var(--danger); }
+        .status-item span { font-size: 0.8rem; font-weight: 600; }
+
+        @media (max-width: 767px) {
+            .form-grid { grid-template-columns: 1fr; }
+            .auth-card { padding: 1.5rem; }
+            .stepper::before { left: 5%; right: 5%; }
+            .step-label { font-size: 0.65rem; }
+            .form-actions { flex-direction: column; gap: 0.75rem; }
+            .form-actions .btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-page">
+        <div class="container">
+            <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Kembali ke Beranda</a>
+            <div class="auth-card">
+                <div class="auth-header">
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="28" stroke="currentColor" stroke-width="3"/><path d="M15 35C15 35 20 20 30 20C40 20 45 35 45 35" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="20" cy="38" r="5" stroke="currentColor" stroke-width="2.5"/><circle cx="40" cy="38" r="5" stroke="currentColor" stroke-width="2.5"/><path d="M25 38H35" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+                    </div>
+                    <h1>Pendaftaran Anggota BTI</h1>
+                    <p>Lengkapi data Anda untuk bergabung dengan komunitas kami</p>
+                </div>
+
+                <!-- Stepper -->
+                <div class="stepper" id="stepper">
+                    <div class="step active" data-step="1">
+                        <div class="step-number">1</div>
+                        <span class="step-label">Data Pribadi</span>
+                    </div>
+                    <div class="step" data-step="2">
+                        <div class="step-number">2</div>
+                        <span class="step-label">Data Bikers</span>
+                    </div>
+                    <div class="step" data-step="3">
+                        <div class="step-number">3</div>
+                        <span class="step-label">Data Akun</span>
+                    </div>
+                    <div class="step" data-step="4">
+                        <div class="step-number">4</div>
+                        <span class="step-label">Dokumen</span>
+                    </div>
+                    <div class="step" data-step="5">
+                        <div class="step-number">5</div>
+                        <span class="step-label">Pembayaran</span>
+                    </div>
+                </div>
+
+                <form id="registerForm">
+                    <!-- Step 1: Data Pribadi -->
+                    <div class="form-section active" data-section="1">
+                        <h3 style="font-family: var(--font-heading); margin-bottom: 1.5rem; color: var(--primary);"><i class="fas fa-user" style="color: var(--accent);"></i> Data Pribadi</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label required">Nama Lengkap</label>
+                                <input type="text" class="form-input" placeholder="Contoh: Ahmad Santoso" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label required">Nama Pendek / Panggilan</label>
+                                <input type="text" class="form-input" placeholder="Contoh: Ahmad" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label required">Email</label>
+                                <input type="email" class="form-input" placeholder="email@contoh.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label required">Nomor WhatsApp</label>
+                                <input type="tel" class="form-input" placeholder="0812-3456-7890" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label required">Tanggal Lahir</label>
+                                <input type="date" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label required">Kota/Kabupaten</label>
+                                <input type="text" class="form-input" placeholder="Contoh: Surabaya" required>
+                            </div>
+                        </div>
+                        <div class="form-grid full">
+                            <div class="form-group">
+                                <label class="form-label required">Alamat Lengkap</label>
+                                <textarea class="form-textarea" placeholder="Masukkan alamat lengkap Anda" required></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Data Bikers -->
+                    <div class="form-section" data-section="2">
+                        <h3 style="font-family: var(--font-heading); margin-bottom: 1.5rem; color: var(--primary);"><i class="fas fa-motorcycle" style="color: var(--accent);"></i> Data Bikers</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">Nama Komunitas</label>
+                                <input type="text" class="form-input" placeholder="Nama komunitas Anda (opsional)">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label required">Regional</label>
+                                <select class="form-select" required>
+                                    <option value="">Pilih Regional</option>
+                                    <option value="jawa-timur">Jawa Timur</option>
+                                    <option value="jawa-tengah">Jawa Tengah</option>
+                                    <option value="jawa-barat">Jawa Barat</option>
+                                    <option value="bali">Bali</option>
+                                    <option value="sumatera-utara">Sumatera Utara</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label required">Korwil</label>
+                                <select class="form-select" required>
+                                    <option value="">Pilih Korwil</option>
+                                    <option value="surabaya">Korwil Surabaya</option>
+                                    <option value="mojokerto">Korwil Mojokerto</option>
+                                    <option value="jombang">Korwil Jombang</option>
+                                    <option value="sidoarjo">Korwil Sidoarjo</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label required">Jenis Kendaraan</label>
+                                <select class="form-select" required>
+                                    <option value="">Pilih Jenis</option>
+                                    <option value="sport">Sport</option>
+                                    <option value="naked">Naked</option>
+                                    <option value="cruiser">Cruiser</option>
+                                    <option value="adventure">Adventure/Touring</option>
+                                    <option value="scooter">Scooter/Maxi</option>
+                                    <option value="moped">Moped/Underbone</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label required">Nomor Polisi</label>
+                                <input type="text" class="form-input" placeholder="Contoh: L 1234 AB" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Data Akun -->
+                    <div class="form-section" data-section="3">
+                        <h3 style="font-family: var(--font-heading); margin-bottom: 1.5rem; color: var(--primary);"><i class="fas fa-lock" style="color: var(--accent);"></i> Data Akun</h3>
+                        <div class="form-grid full">
+                            <div class="form-group">
+                                <label class="form-label required">Username</label>
+                                <input type="text" class="form-input" placeholder="Buat username unik" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label required">Password</label>
+                                <input type="password" class="form-input" placeholder="Minimal 8 karakter" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label required">Konfirmasi Password</label>
+                                <input type="password" class="form-input" placeholder="Ulangi password" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Dokumen -->
+                    <div class="form-section" data-section="4">
+                        <h3 style="font-family: var(--font-heading); margin-bottom: 1.5rem; color: var(--primary);"><i class="fas fa-file-upload" style="color: var(--accent);"></i> Dokumen Pendukung</h3>
+                        <div class="form-grid full">
+                            <div class="form-group">
+                                <label class="form-label required">Foto Diri</label>
+                                <div class="file-upload" onclick="document.getElementById('foto').click()">
+                                    <i class="fas fa-camera"></i>
+                                    <p>Klik untuk upload foto diri (pas foto)</p>
+                                    <input type="file" id="foto" accept="image/*">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label required">Identitas (KTP/SIM)</label>
+                                <div class="file-upload" onclick="document.getElementById('identitas').click()">
+                                    <i class="fas fa-id-card"></i>
+                                    <p>Klik untuk upload KTP atau SIM</p>
+                                    <input type="file" id="identitas" accept="image/*,.pdf">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Dokumen Pendukung Lainnya</label>
+                                <div class="file-upload" onclick="document.getElementById('dokumen').click()">
+                                    <i class="fas fa-paperclip"></i>
+                                    <p>Klik untuk upload dokumen tambahan (opsional)</p>
+                                    <input type="file" id="dokumen" accept="image/*,.pdf">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 5: Pembayaran -->
+                    <div class="form-section" data-section="5">
+                        <div class="payment-card">
+                            <h3><i class="fas fa-receipt"></i> Pembayaran Registrasi</h3>
+                            <div class="payment-amount">Rp 150.000</div>
+                            <div class="payment-period">Periode keanggotaan: 2026 - 2027</div>
+                            <div class="payment-methods">
+                                <div class="payment-method active">
+                                    <i class="fas fa-qrcode"></i>
+                                    <span>QRIS</span>
+                                </div>
+                                <div class="payment-method">
+                                    <i class="fas fa-university"></i>
+                                    <span>Transfer Bank</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label required">Upload Bukti Pembayaran</label>
+                            <div class="file-upload" onclick="document.getElementById('bukti').click()">
+                                <i class="fas fa-receipt"></i>
+                                <p>Klik untuk upload bukti transfer / screenshot QRIS</p>
+                                <input type="file" id="bukti" accept="image/*">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 6: Status -->
+                    <div class="form-section" data-section="6">
+                        <div class="status-card">
+                            <div class="status-icon pending" id="statusIcon"><i class="fas fa-clock"></i></div>
+                            <h2 id="statusTitle">Pendaftaran Berhasil Diajukan!</h2>
+                            <p>Nomor Pengajuan Anda:</p>
+                            <div class="nomor-pengajuan" id="nomorPengajuan">BTI-2026-00842</div>
+                            <p>Status pengajuan Anda saat ini:</p>
+                            <div class="status-timeline">
+                                <div class="status-item active">
+                                    <i class="fas fa-clock"></i>
+                                    <span>Menunggu Verifikasi</span>
+                                </div>
+                                <div class="status-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Disetujui</span>
+                                </div>
+                            </div>
+                            <p style="margin-top: 1.5rem; font-size: 0.85rem;">Kami akan menginformasikan status verifikasi melalui WhatsApp dan email Anda.</p>
+                            <a href="../index.html" class="btn btn-primary" style="margin-top: 1.5rem;"><i class="fas fa-home"></i> Kembali ke Beranda</a>
+                        </div>
+                    </div>
+
+                    <div class="form-actions" id="formActions">
+                        <button type="button" class="btn btn-outline" id="btnPrev" style="visibility: hidden;"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                        <button type="button" class="btn btn-primary" id="btnNext">Selanjutnya <i class="fas fa-arrow-right"></i></button>
+                        <button type="submit" class="btn btn-primary" id="btnSubmit" style="display: none;"><i class="fas fa-paper-plane"></i> Ajukan Pendaftaran</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        let currentStep = 1;
+        const totalSteps = 5;
+        const stepper = document.getElementById('stepper');
+        const sections = document.querySelectorAll('.form-section');
+        const btnPrev = document.getElementById('btnPrev');
+        const btnNext = document.getElementById('btnNext');
+        const btnSubmit = document.getElementById('btnSubmit');
+        const formActions = document.getElementById('formActions');
+
+        function updateStep(step) {
+            currentStep = step;
+
+            // Update stepper
+            document.querySelectorAll('.step').forEach((s, i) => {
+                s.classList.remove('active', 'completed');
+                if (i + 1 < step) s.classList.add('completed');
+                else if (i + 1 === step) s.classList.add('active');
+            });
+
+            // Update sections
+            sections.forEach(sec => {
+                sec.classList.remove('active');
+                if (parseInt(sec.dataset.section) === step) sec.classList.add('active');
+            });
+
+            // Update buttons
+            btnPrev.style.visibility = step === 1 ? 'hidden' : 'visible';
+            if (step === totalSteps) {
+                btnNext.style.display = 'none';
+                btnSubmit.style.display = 'inline-flex';
+            } else {
+                btnNext.style.display = 'inline-flex';
+                btnSubmit.style.display = 'none';
+            }
+
+            // Hide actions on status page
+            if (step === 6) {
+                formActions.style.display = 'none';
+                stepper.style.display = 'none';
+            }
+        }
+
+        btnNext.addEventListener('click', () => {
+            if (currentStep < totalSteps) updateStep(currentStep + 1);
+        });
+
+        btnPrev.addEventListener('click', () => {
+            if (currentStep > 1) updateStep(currentStep - 1);
+        });
+
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            updateStep(6);
+        });
+    </script>
+</body>
+</html>

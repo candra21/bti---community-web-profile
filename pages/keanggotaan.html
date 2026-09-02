@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keanggotaan - Bikers Touring Indonesia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <style>
+        .page-header { background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%); padding: 8rem 0 4rem; color: var(--white); text-align: center; }
+        .page-header h1 { font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 800; margin-bottom: 0.5rem; }
+        .page-header p { color: rgba(255,255,255,0.8); font-size: 1.05rem; }
+        .breadcrumb { display: flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 1rem 0; font-size: 0.85rem; color: rgba(255,255,255,0.6); }
+        .breadcrumb a:hover { color: var(--accent); }
+        .breadcrumb-separator { color: rgba(255,255,255,0.4); }
+        .benefits-section { padding: 4rem 0; }
+        .benefit-table-wrapper { max-width: 900px; margin: 0 auto 3rem; overflow-x: auto; }
+        .benefit-table { width: 100%; border-collapse: collapse; background: var(--white); border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-lg); }
+        .benefit-table thead { background: var(--primary); }
+        .benefit-table th { font-family: var(--font-heading); font-size: 0.9rem; font-weight: 700; color: var(--white); padding: 1.25rem 1.5rem; text-align: left; text-transform: uppercase; letter-spacing: 0.5px; }
+        .benefit-table td { padding: 1.25rem 1.5rem; color: var(--gray-700); border-bottom: 1px solid var(--gray-100); font-size: 0.95rem; background: var(--white); }
+        .benefit-table td:first-child { font-weight: 600; display: flex; align-items: center; gap: 0.75rem; white-space: nowrap; }
+        .benefit-table td:first-child i { color: var(--accent); font-size: 1.1rem; }
+        .benefit-table tbody tr:hover { background: var(--gray-50); }
+        .benefit-table tbody tr:last-child td { border-bottom: none; }
+        .cta-section { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); padding: 4rem 0; text-align: center; }
+        .cta-section h2 { font-family: var(--font-heading); font-size: 2rem; font-weight: 800; color: var(--white); margin-bottom: 1rem; }
+        .cta-section p { color: rgba(255,255,255,0.8); margin-bottom: 2rem; }
+        .cta-buttons { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+        .btn-white { display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; background: var(--white); color: var(--primary); border-radius: var(--radius-full); font-family: var(--font-heading); font-size: 1rem; font-weight: 600; transition: var(--transition-base); }
+        .btn-white:hover { background: var(--gray-50); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+        .btn-outline-white { display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.4); border-radius: var(--radius-full); font-family: var(--font-heading); font-size: 1rem; font-weight: 600; transition: var(--transition-base); }
+        .btn-outline-white:hover { background: rgba(255,255,255,0.1); border-color: var(--white); transform: translateY(-2px); }
+        @media (max-width: 767px) { .benefit-table th, .benefit-table td { padding: 1rem; font-size: 0.85rem; } .cta-buttons { flex-direction: column; padding: 0 1rem; } .cta-buttons a { width: 100%; justify-content: center; } }
+    </style>
+</head>
+<body>
+    <div class="page-header">
+        <div class="container">
+            <div class="breadcrumb"><a href="../index.html">Beranda</a><span class="breadcrumb-separator">/</span><span>Keanggotaan</span></div>
+            <h1>Keanggotaan BTI</h1>
+            <p>Jadilah bagian dari keluarga besar bikers Indonesia</p>
+        </div>
+    </div>
+    <section class="benefits-section">
+        <div class="container">
+            <div class="section-header"><span class="section-tag">Benefit</span><h2 class="section-title">Keuntungan Menjadi Anggota</h2><p class="section-desc">Nikmati berbagai benefit eksklusif sebagai anggota resmi BTI</p></div>
+            <div class="benefit-table-wrapper">
+                <table class="benefit-table">
+                    <thead><tr><th>Benefit Anggota</th><th>Keterangan</th></tr></thead>
+                    <tbody>
+                        <tr><td><i class="fas fa-id-card"></i> Kartu Anggota Resmi</td><td>Kartu tanda anggota BTI yang berlaku nasional</td></tr>
+                        <tr><td><i class="fas fa-calendar-check"></i> Akses Event Eksklusif</td><td>Ikut serta dalam event dan touring khusus anggota</td></tr>
+                        <tr><td><i class="fas fa-percent"></i> Diskon Merchandise</td><td>Potongan harga khusus untuk pembelian merchandise BTI</td></tr>
+                        <tr><td><i class="fas fa-handshake"></i> Jaringan Komunitas</td><td>Akses ke seluruh jaringan komunitas BTI di Indonesia</td></tr>
+                        <tr><td><i class="fas fa-shield-alt"></i> Asuransi Touring</td><td>Perlindungan asuransi saat mengikuti event BTI</td></tr>
+                        <tr><td><i class="fas fa-graduation-cap"></i> Pelatihan & Edukasi</td><td>Akses pelatihan safety riding dan mekanik dasar</td></tr>
+                        <tr><td><i class="fas fa-map-marked-alt"></i> Rute Touring Eksklusif</td><td>Akses rute touring rekomendasi dari komunitas</td></tr>
+                        <tr><td><i class="fas fa-tools"></i> Diskon Bengkel Partner</td><td>Potongan harga di bengkel rekanan BTI</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    <section class="cta-section">
+        <div class="container">
+            <h2>Siap Bergabung?</h2>
+            <p>Daftar sekarang dan jadilah bagian dari perjalanan kami</p>
+            <div class="cta-buttons">
+                <a href="register.html" class="btn-white"><i class="fas fa-user-plus"></i> Daftar Anggota</a>
+                <a href="login.html" class="btn-outline-white"><i class="fas fa-sign-in-alt"></i> Masuk Anggota</a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merchandise - Bikers Touring Indonesia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <style>
+        .page-header { background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%); padding: 8rem 0 4rem; color: var(--white); text-align: center; }
+        .page-header h1 { font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 800; margin-bottom: 0.5rem; }
+        .page-header p { color: rgba(255,255,255,0.8); font-size: 1.05rem; }
+        .breadcrumb { display: flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 1rem 0; font-size: 0.85rem; color: rgba(255,255,255,0.6); }
+        .breadcrumb a:hover { color: var(--accent); }
+        .breadcrumb-separator { color: rgba(255,255,255,0.4); }
+        .merch-section { padding: 3rem 0; background: var(--gray-50); }
+        .filter-toolbar { display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
+        .filter-toolbar select { padding: 0.6rem 1.25rem; border: 2px solid var(--gray-200); border-radius: var(--radius-full); font-size: 0.9rem; color: var(--gray-700); background: var(--white); cursor: pointer; min-width: 180px; }
+        .filter-toolbar select:focus { outline: none; border-color: var(--accent); }
+        .merch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; }
+        .merch-card { background: var(--white); border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-md); border: 1px solid var(--gray-100); transition: var(--transition-base); }
+        .merch-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-xl); }
+        .merch-img { position: relative; height: 240px; background: linear-gradient(135deg, var(--gray-100) 0%, var(--gray-200) 100%); display: flex; align-items: center; justify-content: center; color: var(--gray-400); font-size: 3rem; overflow: hidden; }
+        .merch-status { position: absolute; top: 1rem; right: 1rem; padding: 0.35rem 0.85rem; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; border-radius: var(--radius-full); color: var(--white); }
+        .merch-status.ready { background: var(--success); }
+        .merch-status.open-po { background: var(--info); }
+        .merch-status.close-po { background: var(--warning); color: var(--gray-800); }
+        .merch-status.sold-out { background: var(--gray-400); }
+        .merch-info { padding: 1.25rem; }
+        .merch-info h3 { font-family: var(--font-heading); font-size: 1rem; font-weight: 700; color: var(--primary); margin-bottom: 0.5rem; }
+        .merch-price { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 800; color: var(--accent); }
+        .merch-cta { display: block; width: 100%; padding: 0.75rem; margin-top: 0.75rem; background: var(--gray-50); color: var(--accent); text-align: center; font-family: var(--font-heading); font-size: 0.85rem; font-weight: 600; border-radius: var(--radius-full); transition: var(--transition-base); }
+        .merch-cta:hover { background: var(--accent); color: var(--white); }
+        @media (max-width: 767px) { .merch-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="page-header">
+        <div class="container">
+            <div class="breadcrumb"><a href="../index.html">Beranda</a><span class="breadcrumb-separator">/</span><span>Merchandise</span></div>
+            <h1>Merchandise BTI</h1>
+            <p>Dukung komunitas dengan merchandise resmi</p>
+        </div>
+    </div>
+    <section class="merch-section">
+        <div class="container">
+            <div class="filter-toolbar">
+                <select id="filterStatus"><option value="all">Semua Status</option><option value="ready">Ready</option><option value="open-po">Open PO</option><option value="close-po">Close PO</option><option value="sold-out">Sold Out</option></select>
+            </div>
+            <div class="merch-grid" id="merchGrid"></div>
+        </div>
+    </section>
+    <script src="../js/data.js"></script>
+    <script>
+        function renderMerchPage() {
+            const container = document.getElementById('merchGrid');
+            if (!container || typeof merchandiseData === 'undefined') return;
+            const statusLabels = { 'ready': 'Ready', 'open-po': 'Open PO', 'close-po': 'Close PO', 'sold-out': 'Sold Out' };
+            container.innerHTML = merchandiseData.map(m => `
+                <div class="merch-card">
+                    <div class="merch-img">
+                        ${m.foto ? `<img src="${m.foto}" alt="${m.nama}">` : '<i class="fas fa-tshirt"></i>'}
+                        <span class="merch-status ${m.status}">${statusLabels[m.status]}</span>
+                    </div>
+                    <div class="merch-info">
+                        <h3>${m.nama}</h3>
+                        <div class="merch-price">${m.harga}</div>
+                        <a href="detail/merchandise-detail.html?id=${m.id}" class="merch-cta">Lihat Detail</a>
+                    </div>
+                </div>
+            `).join('');
+        }
+        renderMerchPage();
+    </script>
+</body>
+</html>

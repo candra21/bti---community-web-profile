@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Agenda - Bikers Touring Indonesia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/components.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
+    <style>
+        :root {
+            --primary: #062A42; --primary-light: #0a3d5c; --primary-dark: #041e2e;
+            --accent: #E62129; --accent-hover: #c91a21; --accent-light: #ff4d54;
+            --white: #ffffff; --gray-50: #f8fafc; --gray-100: #f1f5f9; --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1; --gray-400: #94a3b8; --gray-500: #64748b; --gray-600: #475569;
+            --gray-700: #334155; --gray-800: #1e293b; --gray-900: #0f172a;
+            --success: #10b981; --warning: #f59e0b; --danger: #ef4444; --info: #3b82f6;
+            --font-heading: "Franklin Gothic ITC", "Libre Franklin", "Arial Narrow", Arial, sans-serif; --font-body: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            --radius-sm: 8px; --radius-md: 12px; --radius-lg: 16px; --radius-xl: 24px; --radius-full: 9999px;
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1); --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1); --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1);
+            --transition-base: 0.3s ease;
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-body); color: var(--gray-800); line-height: 1.6; background: var(--gray-50); }
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 1.5rem; }
+        .back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--gray-500); margin: 2rem 0 1rem; font-size: 0.9rem; }
+        .back-link:hover { color: var(--accent); }
+        .detail-card { background: var(--white); border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-lg); border: 1px solid var(--gray-100); margin-bottom: 2rem; }
+        .detail-cover { width: 100%; height: 350px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.3); font-size: 4rem; position: relative; }
+        .detail-cover img { width: 100%; height: 100%; object-fit: cover; }
+        .detail-badge { position: absolute; top: 1.5rem; left: 1.5rem; padding: 0.5rem 1rem; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; border-radius: var(--radius-full); color: var(--white); background: var(--accent); }
+        .detail-body { padding: 2.5rem; }
+        .detail-title { font-family: var(--font-heading); font-size: 1.8rem; font-weight: 800; color: var(--primary); margin-bottom: 1.25rem; line-height: 1.3; }
+        .detail-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--gray-100); }
+        .meta-item { display: flex; align-items: center; gap: 0.75rem; }
+        .meta-item i { width: 36px; height: 36px; background: var(--gray-50); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 0.9rem; }
+        .meta-item div span { font-size: 0.75rem; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.5px; }
+        .meta-item div p { font-size: 0.95rem; font-weight: 600; color: var(--gray-700); }
+        .detail-desc h3 { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 0.75rem; }
+        .detail-desc p { color: var(--gray-600); line-height: 1.8; margin-bottom: 1.5rem; }
+        .detail-contact { background: var(--gray-50); border-radius: var(--radius-lg); padding: 1.25rem; margin-bottom: 1.5rem; }
+        .detail-contact h4 { font-family: var(--font-heading); font-size: 0.9rem; font-weight: 700; color: var(--primary); margin-bottom: 0.5rem; }
+        .detail-contact p { font-size: 0.9rem; color: var(--gray-600); }
+        .detail-contact a { color: var(--accent); font-weight: 600; }
+        .detail-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.85rem 1.75rem; font-family: var(--font-heading); font-size: 0.9rem; font-weight: 600; border-radius: var(--radius-full); transition: var(--transition-base); cursor: pointer; border: 2px solid transparent; }
+        .btn-primary { background: var(--accent); color: var(--white); border-color: var(--accent); }
+        .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(233, 69, 96, 0.35); }
+        .btn-outline { background: transparent; color: var(--gray-600); border-color: var(--gray-300); }
+        .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+        .gallery-section { padding: 2rem 0 4rem; }
+        .gallery-section h3 { font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; color: var(--primary); margin-bottom: 1.5rem; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
+        .gallery-item { aspect-ratio: 1; background: linear-gradient(135deg, var(--gray-100) 0%, var(--gray-200) 100%); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; color: var(--gray-400); font-size: 1.5rem; overflow: hidden; cursor: pointer; transition: var(--transition-base); }
+        .gallery-item:hover { transform: scale(1.02); }
+        @media (max-width: 767px) { .detail-cover { height: 220px; } .detail-body { padding: 1.5rem; } .detail-title { font-size: 1.4rem; } .detail-meta { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../agenda.html" class="back-link"><i class="fas fa-arrow-left"></i> Kembali ke Agenda</a>
+        <div class="detail-card">
+            <div class="detail-cover">
+                <i class="fas fa-calendar-alt"></i>
+                <span class="detail-badge" id="detailBadge">NASIONAL</span>
+            </div>
+            <div class="detail-body">
+                <h1 class="detail-title" id="detailTitle">Touring Nasional Jawa-Bali 2026</h1>
+                <div class="detail-meta">
+                    <div class="meta-item"><i class="fas fa-calendar"></i><div><span>Tanggal</span><p id="detailDate">15-20 Maret 2026</p></div></div>
+                    <div class="meta-item"><i class="fas fa-clock"></i><div><span>Periode</span><p>6 Hari</p></div></div>
+                    <div class="meta-item"><i class="fas fa-map-marker-alt"></i><div><span>Lokasi</span><p id="detailLokasi">Jakarta - Surabaya - Denpasar</p></div></div>
+                    <div class="meta-item"><i class="fas fa-tag"></i><div><span>Kategori</span><p id="detailKategori">Nasional</p></div></div>
+                </div>
+                <div class="detail-desc">
+                    <h3>Deskripsi Kegiatan</h3>
+                    <p id="detailDesc">Touring nasional lintas pulau Jawa dan Bali dengan rute terbaik. Kegiatan ini merupakan agenda tahunan BTI yang melibatkan seluruh anggota dari berbagai regional di Indonesia. Rute perjalanan akan dimulai dari Jakarta, melintasi Jawa Tengah, Jawa Timur, dan berakhir di Denpasar, Bali.</p>
+                </div>
+                <div class="detail-contact">
+                    <h4><i class="fas fa-address-book" style="color: var(--accent); margin-right: 0.5rem;"></i> Contact Person</h4>
+                    <p id="detailCP">Ahmad Santoso - 0812-3456-7890</p>
+                </div>
+                <div class="detail-cta" id="detailCTA">
+                    <a href="#" class="btn btn-primary"><i class="fas fa-ticket-alt"></i> Ikuti Event</a>
+                    <a href="#" class="btn btn-outline"><i class="fab fa-whatsapp"></i> Hubungi CP</a>
+                </div>
+            </div>
+        </div>
+        <div class="gallery-section" id="gallerySection" style="display: none;">
+            <h3><i class="fas fa-images" style="color: var(--accent); margin-right: 0.5rem;"></i> Dokumentasi Kegiatan</h3>
+            <div class="gallery-grid">
+                <div class="gallery-item"><i class="fas fa-image"></i></div>
+                <div class="gallery-item"><i class="fas fa-image"></i></div>
+                <div class="gallery-item"><i class="fas fa-image"></i></div>
+                <div class="gallery-item"><i class="fas fa-image"></i></div>
+                <div class="gallery-item"><i class="fas fa-image"></i></div>
+                <div class="gallery-item"><i class="fas fa-image"></i></div>
+            </div>
+        </div>
+    </div>
+    <script src="../../js/data.js"></script>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const id = parseInt(params.get('id'));
+        if (id && typeof agendaData !== 'undefined') {
+            const agenda = agendaData.find(a => a.id === id);
+            if (agenda) {
+                document.getElementById('detailTitle').textContent = agenda.judul;
+                document.getElementById('detailDate').textContent = agenda.tanggal;
+                document.getElementById('detailLokasi').textContent = agenda.lokasi;
+                document.getElementById('detailKategori').textContent = agenda.kategori.charAt(0).toUpperCase() + agenda.kategori.slice(1);
+                document.getElementById('detailDesc').textContent = agenda.deskripsi;
+                document.getElementById('detailCP').textContent = agenda.cp;
+                document.getElementById('detailBadge').textContent = agenda.kategori.toUpperCase();
+                if (agenda.status === 'past') {
+                    document.getElementById('detailCTA').innerHTML = '<a href="#" class="btn btn-primary"><i class="fas fa-images"></i> Lihat Dokumentasi</a>';
+                    document.getElementById('gallerySection').style.display = 'block';
+                }
+            }
+        }
+    </script>
+</body>
+</html>

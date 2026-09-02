@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda - Bikers Touring Indonesia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <style>
+        .page-header { background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%); padding: 8rem 0 4rem; color: var(--white); text-align: center; }
+        .page-header h1 { font-family: var(--font-heading); font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 800; margin-bottom: 0.5rem; }
+        .page-header p { color: rgba(255,255,255,0.8); font-size: 1.05rem; }
+        .breadcrumb { display: flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 1rem 0; font-size: 0.85rem; color: rgba(255,255,255,0.6); }
+        .breadcrumb a:hover { color: var(--accent); }
+        .breadcrumb-separator { color: rgba(255,255,255,0.4); }
+        .agenda-section { padding: 3rem 0; }
+        .filter-toolbar { display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
+        .filter-toolbar select { padding: 0.6rem 1.25rem; border: 2px solid var(--gray-200); border-radius: var(--radius-full); font-size: 0.9rem; color: var(--gray-700); background: var(--white); cursor: pointer; min-width: 180px; }
+        .filter-toolbar select:focus { outline: none; border-color: var(--accent); }
+        .agenda-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
+        .agenda-card { background: var(--white); border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-md); border: 1px solid var(--gray-100); transition: var(--transition-base); }
+        .agenda-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-xl); }
+        .agenda-img { position: relative; height: 200px; background: linear-gradient(135deg, var(--gray-100) 0%, var(--gray-200) 100%); display: flex; align-items: center; justify-content: center; color: var(--gray-400); font-size: 2.5rem; overflow: hidden; }
+        .agenda-badge { position: absolute; top: 1rem; left: 1rem; padding: 0.35rem 0.85rem; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; border-radius: var(--radius-full); color: var(--white); }
+        .agenda-badge.nasional { background: var(--accent); }
+        .agenda-badge.regional { background: var(--info); }
+        .agenda-badge.korwil { background: var(--success); }
+        .agenda-badge.komunitas { background: var(--warning); color: var(--gray-800); }
+        .agenda-content { padding: 1.5rem; }
+        .agenda-date { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--gray-400); margin-bottom: 0.75rem; }
+        .agenda-date i { color: var(--accent); }
+        .agenda-content h3 { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 0.75rem; line-height: 1.4; }
+        .agenda-meta { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--gray-500); margin-bottom: 1rem; }
+        .agenda-cta { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.25rem; background: var(--gray-50); color: var(--accent); font-family: var(--font-heading); font-size: 0.85rem; font-weight: 600; border-radius: var(--radius-full); transition: var(--transition-base); }
+        .agenda-cta:hover { background: var(--accent); color: var(--white); }
+        .pagination { display: flex; justify-content: center; gap: 0.35rem; margin-top: 2rem; }
+        .page-item { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-md); font-family: var(--font-heading); font-size: 0.9rem; font-weight: 600; color: var(--gray-600); background: var(--white); border: 1px solid var(--gray-200); transition: var(--transition-base); cursor: pointer; }
+        .page-item:hover { border-color: var(--accent); color: var(--accent); }
+        .page-item.active { background: var(--accent); color: var(--white); border-color: var(--accent); }
+        @media (max-width: 767px) { .agenda-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="page-header">
+        <div class="container">
+            <div class="breadcrumb"><a href="../index.html">Beranda</a><span class="breadcrumb-separator">/</span><span>Agenda</span></div>
+            <h1>Agenda BTI</h1>
+            <p>Jadwal kegiatan touring dan event komunitas</p>
+        </div>
+    </div>
+    <section class="agenda-section">
+        <div class="container">
+            <div class="filter-toolbar">
+                <select id="filterTipe"><option value="all">Semua Tipe</option><option value="upcoming">Akan Datang</option><option value="past">Terlaksana</option></select>
+                <select id="filterKategori"><option value="all">Semua Kategori</option><option value="nasional">Nasional</option><option value="regional">Regional</option><option value="korwil">Korwil</option><option value="komunitas">Komunitas</option></select>
+                <select id="filterTahun"><option value="all">Semua Tahun</option><option value="2026">2026</option><option value="2025">2025</option></select>
+            </div>
+            <div class="agenda-grid" id="agendaGrid"></div>
+            <div class="pagination">
+                <button class="page-item"><i class="fas fa-chevron-left"></i></button>
+                <button class="page-item active">1</button>
+                <button class="page-item">2</button>
+                <button class="page-item">3</button>
+                <button class="page-item"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+    <script src="../js/data.js"></script>
+    <script>
+        function renderAgendaPage() {
+            const container = document.getElementById('agendaGrid');
+            if (!container || typeof agendaData === 'undefined') return;
+            container.innerHTML = agendaData.map(a => `
+                <div class="agenda-card">
+                    <div class="agenda-img">
+                        ${a.gambar ? `<img src="${a.gambar}" alt="${a.judul}">` : '<i class="fas fa-calendar-alt"></i>'}
+                        <span class="agenda-badge ${a.kategori}">${a.kategori.toUpperCase()}</span>
+                    </div>
+                    <div class="agenda-content">
+                        <div class="agenda-date"><i class="fas fa-calendar"></i><span>${a.tanggal}</span></div>
+                        <h3>${a.judul}</h3>
+                        <div class="agenda-meta"><i class="fas fa-map-marker-alt"></i><span>${a.lokasi}</span></div>
+                        <a href="detail/agenda-detail.html?id=${a.id}" class="agenda-cta">${a.status === 'upcoming' ? '<i class="fas fa-ticket-alt"></i> Ikuti Event' : '<i class="fas fa-images"></i> Lihat Dokumentasi'}</a>
+                    </div>
+                </div>
+            `).join('');
+        }
+        renderAgendaPage();
+    </script>
+</body>
+</html>

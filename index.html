@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bikers Touring Indonesia - Komunitas Bikers Terbesar di Indonesia. Berjumpa, Bercerita, Bersaudara.">
+    <title>Bikers Touring Indonesia (BTI) - Berjumpa, Bercerita, Bersaudara</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/icons/bti-logo.svg">
+</head>
+<body>
+    <!-- ==================== HEADER / NAVIGATION ==================== -->
+    <header class="header" id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">
+                        <img src="assets/images/bti-logo.png" alt="">
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-title">BIKERS TOURING</span>
+                        <span class="logo-subtitle">INDONESIA</span>
+                    </div>
+                </a>
+
+                <ul class="nav-menu" id="navMenu">
+                    <li class="nav-item">
+                        <a href="#struktur" class="nav-link">Struktur</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#agenda" class="nav-link">Agenda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#merchandise" class="nav-link">Merchandise</a>
+                    </li>
+                    <li class="nav-item mobile-only">
+                        <a href="pages/keanggotaan.html" class="nav-link">Keanggotaan</a>
+                    </li>
+                </ul>
+
+                <div class="nav-actions">
+                    <div class="search-wrapper">
+                        <button class="search-toggle" id="searchToggle" aria-label="Toggle search">
+                            <i class="fas fa-search"></i>
+                        </button>
+                        <div class="search-bar" id="searchBar">
+                            <input type="text" 
+                                   class="search-input" 
+                                   id="searchInput"
+                                   placeholder="Cari agenda, komunitas, wilayah..."
+                                   autocomplete="off">
+                            <button class="search-close" id="searchClose">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <div class="search-results" id="searchResults"></div>
+                        </div>
+                    </div>
+
+                    <a href="pages/login.html" class="btn btn-login">
+                        <i class="fas fa-user"></i>
+                        <span>Masuk</span>
+                    </a>
+
+                    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                        <span class="hamburger"></span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <main>
+        <!-- Section 7: Hero Section (Revised - Reference Style) -->
+        <section class="hero" id="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-headline">BIKERS TOURING INDONESIA</h1>
+                    <p class="hero-description">
+                        Bikers Touring Indonesia adalah wadah komunitas bikers
+                        yang mempererat persaudaraan, membangun jaringan komunitas,
+                        serta mendorong kegiatan touring dan aktivitas
+                        positif di berbagai wilayah Indonesia.
+                    </p>
+                    <div class="hero-cta">
+                        <a href="pages/register.html" class="btn btn-primary btn-lg">
+                            Bergabung Menjadi Anggota
+                        </a>
+                        <a href="pages/login.html" class="btn btn-secondary btn-lg">
+                            Masuk Anggota
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <!-- <div class="hero-visual-inner"> -->
+                        <div class="hero-bike-illustration">
+                            <img src="assets/images/hero-section-touring.jfif" alt="">
+                        </div>
+                    <!-- </div> -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Hero Stats Bar -->
+        <div class="hero-stats-bar">
+            <div class="container">
+                <div class="stat-item">
+                    <span class="stat-number" data-count="5000">0</span>
+                    <span class="stat-label">Anggota</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="34">0</span>
+                    <span class="stat-label">Provinsi</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="120">0</span>
+                    <span class="stat-label">Komunitas</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="250">0</span>
+                    <span class="stat-label">Event</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 8: Visi & Misi -->
+        <section class="visi-misi section-padding" id="visi-misi">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Tentang Kami</span>
+                    <h2 class="section-title">Visi & Misi</h2>
+                </div>
+                <div class="visi-misi-grid">
+                    <div class="visi-card card-hover">
+                        <div class="card-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h3>Visi</h3>
+                        <p class="cms-editable" data-cms="visi">
+                            Menjadi wadah komunitas bikers terbesar dan terdepan di Indonesia 
+                            yang mempererat persaudaraan antar bikers, membangun jaringan komunitas 
+                            yang solid, serta menjadi garda terdepan dalam aktivitas touring dan 
+                            kegiatan sosial positif di seluruh wilayah Indonesia.
+                        </p>
+                    </div>
+                    <div class="misi-card card-hover">
+                        <div class="card-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h3>Misi</h3>
+                        <ul class="misi-list cms-editable" data-cms="misi">
+                            <li><i class="fas fa-check-circle"></i> Mempererat tali persaudaraan antar bikers di seluruh Indonesia</li>
+                            <li><i class="fas fa-check-circle"></i> Membangun jaringan komunitas motor yang solid dan berdaya</li>
+                            <li><i class="fas fa-check-circle"></i> Mendorong kegiatan touring yang aman, tertib, dan berwawasan lingkungan</li>
+                            <li><i class="fas fa-check-circle"></i> Menjadi wadah aktivitas sosial dan kepedulian masyarakat</li>
+                            <li><i class="fas fa-check-circle"></i> Mengembangkan potensi anggota melalui pelatihan dan edukasi</li>
+                            <li><i class="fas fa-check-circle"></i> Menjalin kerja sama dengan stakeholder terkait demi kemajuan komunitas</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 9: Struktur Organisasi -->
+        <section class="struktur section-padding bg-light" id="struktur">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Organisasi</span>
+                    <h2 class="section-title">Struktur Organisasi</h2>
+                    <p class="section-desc">Kenali pengurus BTI dari tingkat nasional hingga regional</p>
+                </div>
+
+                <div class="tab-panel">
+                    <div class="tab-nav">
+                        <button class="tab-btn active" data-tab="nasional">
+                            <i class="fas fa-flag"></i> Pengurus Nasional
+                        </button>
+                        <button class="tab-btn" data-tab="regional">
+                            <i class="fas fa-map-marked-alt"></i> Pengurus Regional
+                        </button>
+                        <button class="tab-btn" data-tab="sekretariat">
+                            <i class="fas fa-building"></i> Sekretariat
+                        </button>
+                    </div>
+
+                    <div class="tab-content active" id="tab-nasional">
+                        <div class="pengurus-grid" id="pengurusNasional"></div>
+                    </div>
+
+                    <div class="tab-content" id="tab-regional">
+                        <div class="filter-bar">
+                            <select class="filter-select" id="filterRegional">
+                                <option value="all">Semua Regional</option>
+                                <option value="jawa-timur">Jawa Timur</option>
+                                <option value="jawa-tengah">Jawa Tengah</option>
+                                <option value="jawa-barat">Jawa Barat</option>
+                                <option value="bali">Bali</option>
+                                <option value="sumatera-utara">Sumatera Utara</option>
+                            </select>
+                        </div>
+                        <div class="pengurus-grid" id="pengurusRegional"></div>
+                    </div>
+
+                    <div class="tab-content" id="tab-sekretariat">
+                        <div class="sekretariat-card">
+                            <div class="sekretariat-info">
+                                <div class="info-icon">
+                                    <i class="fas fa-building"></i>
+                                </div>
+                                <h3>Sekretariat Nasional BTI</h3>
+                                <div class="info-list">
+                                    <div class="info-item">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <div>
+                                            <span class="label">Alamat</span>
+                                            <p>Jl. Raya Motor No. 88, Kel. Bikers, Kec. Touring</p>
+                                        </div>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="fas fa-city"></i>
+                                        <div>
+                                            <span class="label">Kota</span>
+                                            <p>Surabaya, Jawa Timur</p>
+                                        </div>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="fas fa-phone"></i>
+                                        <div>
+                                            <span class="label">Kontak</span>
+                                            <p>+62 812-3456-7890</p>
+                                        </div>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="fas fa-envelope"></i>
+                                        <div>
+                                            <span class="label">Email</span>
+                                            <p>sekretariat@bikers-touring.id</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sekretariat-map">
+                                <iframe 
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.6860!2d112.7380!3d-7.2892!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zN8KwMTcnMjEuMSJTIDExMsKwNDQnMTYuOCJF!5e0!3m2!1sid!2sid!4v1600000000000"
+                                    width="100%" 
+                                    height="100%" 
+                                    style="border:0; border-radius: 16px;" 
+                                    allowfullscreen="" 
+                                    loading="lazy"
+                                    title="Lokasi Sekretariat BTI">
+                                </iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 10 & 11: Korwil & Komunitas -->
+        <section class="komunitas-section section-padding" id="komunitas">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Jaringan</span>
+                    <h2 class="section-title">Korwil & Komunitas Terdaftar</h2>
+                    <p class="section-desc">Jaringan BTI tersebar di berbagai wilayah Indonesia</p>
+                </div>
+
+                <div class="filter-section">
+                    <div class="filter-group">
+                        <label><i class="fas fa-filter"></i> Filter Regional:</label>
+                        <select class="filter-select" id="filterKorwilRegional">
+                            <option value="all">Semua Regional</option>
+                            <option value="jawa-timur">Jawa Timur</option>
+                            <option value="jawa-tengah">Jawa Tengah</option>
+                            <option value="jawa-barat">Jawa Barat</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Filter Korwil:</label>
+                        <select class="filter-select" id="filterKomunitasKorwil">
+                            <option value="all">Semua Korwil</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="section-subtitle">
+                    <h3><i class="fas fa-map-pin"></i> Koordinator Wilayah (Korwil)</h3>
+                </div>
+                <div class="korwil-grid" id="korwilGrid"></div>
+
+                <div class="section-subtitle">
+                    <h3><i class="fas fa-users"></i> Komunitas Terdaftar</h3>
+                </div>
+                <div class="komunitas-grid" id="komunitasGrid"></div>
+            </div>
+        </section>
+
+        <!-- Section 12: Agenda -->
+        <section class="agenda section-padding bg-light" id="agenda">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Kegiatan</span>
+                    <h2 class="section-title">Agenda BTI</h2>
+                    <p class="section-desc">Ikuti kegiatan touring dan event seru BTI</p>
+                </div>
+
+                <div class="agenda-tabs">
+                    <button class="agenda-tab active" data-agenda="upcoming">
+                        <i class="fas fa-calendar-alt"></i> Akan Datang
+                    </button>
+                    <button class="agenda-tab" data-agenda="past">
+                        <i class="fas fa-history"></i> Terlaksana
+                    </button>
+                </div>
+
+                <div class="filter-bar">
+                    <div class="filter-chips">
+                        <button class="chip active" data-filter="all">Semua</button>
+                        <button class="chip" data-filter="nasional">Nasional</button>
+                        <button class="chip" data-filter="regional">Regional</button>
+                        <button class="chip" data-filter="korwil">Korwil</button>
+                        <button class="chip" data-filter="komunitas">Komunitas</button>
+                    </div>
+                </div>
+
+                <div class="agenda-grid" id="agendaGrid"></div>
+
+                <div class="text-center mt-4">
+                    <a href="pages/agenda.html" class="btn btn-outline">
+                        Lihat Semua Agenda <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 14: Merchandise -->
+        <section class="merchandise section-padding" id="merchandise">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Official Store</span>
+                    <h2 class="section-title">Merchandise BTI</h2>
+                    <p class="section-desc">Dukung BTI dengan merchandise resmi kami</p>
+                </div>
+
+                <div class="merch-grid" id="merchGrid"></div>
+
+                <div class="text-center mt-4">
+                    <a href="pages/merchandise.html" class="btn btn-outline">
+                        Lihat Katalog Lengkap <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 16: Keanggotaan -->
+        <section class="keanggotaan section-padding bg-gradient" id="keanggotaan">
+            <div class="container">
+                <div class="section-header light">
+                    <span class="section-tag">Join Us</span>
+                    <h2 class="section-title">Keanggotaan BTI</h2>
+                    <p class="section-desc">Jadi bagian dari keluarga besar Bikers Touring Indonesia</p>
+                </div>
+
+                <div class="benefit-table-wrapper">
+                    <table class="benefit-table cms-editable" data-cms="benefits">
+                        <thead>
+                            <tr>
+                                <th>Benefit Anggota</th>
+                                <th>Keterangan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><i class="fas fa-id-card"></i> Kartu Anggota Resmi</td>
+                                <td>Kartu tanda anggota BTI yang berlaku nasional</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-calendar-check"></i> Akses Event Eksklusif</td>
+                                <td>Ikut serta dalam event dan touring khusus anggota</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-percent"></i> Diskon Merchandise</td>
+                                <td>Potongan harga khusus untuk pembelian merchandise BTI</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-handshake"></i> Jaringan Komunitas</td>
+                                <td>Akses ke seluruh jaringan komunitas BTI di Indonesia</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-shield-alt"></i> Asuransi Touring</td>
+                                <td>Perlindungan asuransi saat mengikuti event BTI</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-graduation-cap"></i> Pelatihan & Edukasi</td>
+                                <td>Akses pelatihan safety riding dan mekanik dasar</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="keanggotaan-cta">
+                    <a href="pages/register.html" class="btn btn-white btn-lg">
+                        <i class="fas fa-user-plus"></i> Daftar Anggota
+                    </a>
+                    <a href="pages/login.html" class="btn btn-outline-white btn-lg">
+                        <i class="fas fa-sign-in-alt"></i> Masuk Anggota
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer" id="footer">
+        <div class="footer-main">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <a href="index.html" class="footer-logo">
+                            <div class="logo-icon">
+                                <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="30" cy="30" r="28" stroke="currentColor" stroke-width="3"/>
+                                    <path d="M15 35C15 35 20 20 30 20C40 20 45 35 45 35" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                                    <circle cx="20" cy="38" r="5" stroke="currentColor" stroke-width="2.5"/>
+                                    <circle cx="40" cy="38" r="5" stroke="currentColor" stroke-width="2.5"/>
+                                    <path d="M25 38H35" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <span>BIKERS TOURING INDONESIA</span>
+                        </a>
+                        <p class="footer-tagline">Berjumpa, Bercerita, Bersaudara</p>
+                        <p class="footer-desc">
+                            Wadah komunitas bikers terbesar di Indonesia yang mempererat 
+                            persaudaraan dan mendorong kegiatan touring positif.
+                        </p>
+                    </div>
+
+                    <div class="footer-nav">
+                        <h4>Navigasi</h4>
+                        <ul>
+                            <li><a href="#struktur"><i class="fas fa-chevron-right"></i> Struktur</a></li>
+                            <li><a href="#agenda"><i class="fas fa-chevron-right"></i> Agenda</a></li>
+                            <li><a href="#merchandise"><i class="fas fa-chevron-right"></i> Merchandise</a></li>
+                            <li><a href="#keanggotaan"><i class="fas fa-chevron-right"></i> Keanggotaan</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-contact">
+                        <h4>Kontak</h4>
+                        <ul>
+                            <li>
+                                <i class="fas fa-envelope"></i>
+                                <span>sekretariat@bikers-touring.id</span>
+                            </li>
+                            <li>
+                                <i class="fab fa-whatsapp"></i>
+                                <span>+62 812-3456-7890</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Sekretariat Nasional, Surabaya</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-social">
+                        <h4>Sosial Media</h4>
+                        <div class="social-links">
+                            <a href="#" class="social-link" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-link" aria-label="Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-link" aria-label="WhatsApp">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="#" class="social-link" aria-label="YouTube">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <span class="divider">|</span>
+                    <a href="#">Terms & Conditions</a>
+                </div>
+                <p class="copyright">
+                    &copy; 2026 Bikers Touring Indonesia. All Rights Reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== SCRIPTS ==================== -->
+    <script src="js/data.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
